@@ -11,7 +11,7 @@
     <p>uzspied uz pirmā attēla , pēc tam pēc iespējas ātrāk noklikšķini uz otra attēla , lai noskaidrotu savu reakcijas laiku
     </p>
     <p>Tavs laiks:<span id="tavsLaiks">te būs redzams laiks</span></p>
-<div id="attels" style="position: absolute ; backgroundColor:yellow; width:200px; height:200px"></div>
+<div id="attels" style="position: absolute ; width:200px; height:200px"></div>
 
     <script>
         var sakums;//piefiksē sakumu laiku
@@ -26,9 +26,31 @@
 
             document.getElementById("attels").style.top=top+"px";
             document.getElementById("attels").style.left=left+"px";
-            document.getElementById("attels").style.backgroundColor="yellow";
+            //document.getElementById("attels").style.backgroundColor="red";
             document.getElementById("attels").style.display="block";
             console.log("heyy , whats up! ");
+            sakums=new Date().getTime();//piefikse pirma attela paradisanas laiku
+            console.log(sakums);
+
+        if (!game){
+            game=true;//pasludina speli par sakusos
+            bilde.innerHTML="<img src='1.jpg' width=200px;>";
+            document.getElementById("attels").onclick=function(){
+                paradies();
+           }
+
+        }
+            else{
+                game=false;///patrauc speli
+                bilde.innerHTML="<img src='oj.jpg' width=200px;>";//parada otru
+                document.getElementById("attels").onclick=function(){
+                    document.getElementById("attels").style.display="none";//paslepj attela bloku
+                    beigas=new Date().getTime();//PIEFIKSE speles beigu laiku
+                    var mansLaiks=(beigas-sakums)/1000;//aprekina reakcijas laiku
+                    document.getElementById("tavsLaiks").innerHTML=mansLaiks+"s";
+                
+            }
+        }
         }
         //Funkcija ,kas parāda bloku pēc nejauši izvēlēta laika
         function bulba (){
